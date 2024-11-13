@@ -1,4 +1,13 @@
-﻿
+CookBookIntro start = new CookBookIntro();
+IngredientDisplay chefChoice = new IngredientDisplay(0);
+
+
+start.IntroductionToChef();
+chefChoice.MenuDisplayButtons();
+
+
+Console.ReadKey();
+
 
 class CookBookIntro
 {
@@ -6,9 +15,7 @@ class CookBookIntro
     {
         Console.WriteLine("Hello Chef!!!");
         Console.WriteLine("Let's create a custom recipe");
-        Console.WriteLine("");
-        Console.WriteLine("");
-        Console.WriteLine("");
+        Console.WriteLine();
         Console.WriteLine("Here is a list of ingredients:");
     }
 }
@@ -32,16 +39,45 @@ class IngredientDisplay : Menu
 
     public void MenuDisplayButtons()
     {
-        Console.WriteLine("Select an ingredient by number:");
-        Console.WriteLine("1: Flour");
-        Console.WriteLine("2: Egg");
-        Console.WriteLine("3: Milk");
-        Console.WriteLine("4: Oil");
-        Console.WriteLine("5: Salt");
-        Console.WriteLine("6: Sugar");
-        Console.WriteLine("7: Vanilla");
-        Console.WriteLine("8: Chocolate");
-        Console.WriteLine("9: Cinnamon");
+        bool exit = false;
+
+        while (!exit)
+        {
+            Console.WriteLine("\nSelect an ingredient by number (or type 0 to exit):");
+            Console.WriteLine("1: Flour");
+            Console.WriteLine("2: Egg");
+            Console.WriteLine("3: Milk");
+            Console.WriteLine("4: Oil");
+            Console.WriteLine("5: Salt");
+            Console.WriteLine("6: Sugar");
+            Console.WriteLine("7: Vanilla");
+            Console.WriteLine("8: Chocolate");
+            Console.WriteLine("9: Cinnamon");
+
+
+            int userChoice;
+            //The TryParse parse method checks to see if a int given and if so, by giving a bool value
+            //and spits out the userChoice as a results if true per if statement
+            bool isValidInput = int.TryParse(Console.ReadLine(), out userChoice);
+
+            if (isValidInput && userChoice == 0)
+            {
+                exit = true;
+                Console.WriteLine("Exiting the ingredient selection.");
+            }
+            else if (isValidInput && userChoice >= 1 && userChoice <= 9)
+            {
+                Ingredient ingredient = new Ingredient(userChoice);
+                ingredient.IngredientPicker();
+
+
+
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice, please try again.");
+            }
+        }
     }
 }
 
@@ -49,9 +85,52 @@ public class Ingredient : Menu
 {
     public Ingredient(int ingredient) : base(ingredient) { }
 
-    public void IngredientPicker()
+    public virtual void IngredientPicker()
     {
-        Console.WriteLine("MenuIngredientPicker method works");
-        Console.WriteLine($"You selected ingredient number {Ingredient}");
+
+        //string ingredientName;
+        //switch (ingredient)
+        //switch expression below is the same as the switch statement above.
+        string ingredientName = Ingredient switch
+        {
+         //This switch expression is the same a switsh statement. It simplier and precise if you only have one cases.
+            1 => "Flour",
+            2 => "Egg",
+            3 => "Milk",
+            4 => "Oil",
+            5 => "Salt",
+            6 => "Sugar",
+            7 => "Vanilla",
+            8 => "Chocolate",
+            9 => "Cinnamon",
+            _ => "Unknown"
+        };
+
+        IngredientDescription ingridientDescription = new IngredientDescription(0);
+        ingridientDescription.IngredientDescriptionAssigner(ingredientName);
+    }
+}
+
+public class IngredientDescription : Ingredient
+{
+    public IngredientDescription(int ingredient) : base(ingredient) { }
+
+    public void IngredientDescriptionAssigner(string ingredientName)
+    {
+        string ingredientDescription = ingredientName switch
+        {
+            "Flour" => "Flour is a powder made by grinding raw grains, roots, beans, nuts, or seeds.",
+            "Egg" => "Eggs are a versatile ingredient that provide structure and richness.",
+            "Milk" => "Milk is a nutrient-rich liquid food produced by mammals.",
+            "Oil" => "Oil is a fat that is liquid at room temperature, often used for frying.",
+            "Salt" => "Salt is a mineral composed primarily of sodium chloride, used to season food.",
+            "Sugar" => "Sugar is a sweet-tasting, soluble carbohydrate, often used as a sweetener.",
+            "Vanilla" => "Vanilla is a flavoring derived from orchids of the genus Vanilla.",
+            "Chocolate" => "Chocolate is a preparation of roasted and ground cacao seeds, often sweetened.",
+            "Cinnamon" => "Cinnamon is a spice obtained from the inner bark of several tree species.",
+            _ => "Unknown description"
+        };
+
+        Console.WriteLine($"Description: {ingredientDescription}");
     }
 }
