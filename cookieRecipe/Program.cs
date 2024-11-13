@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+
 CookBookIntro start = new CookBookIntro();
 IngredientDisplay chefChoice = new IngredientDisplay(0);
 
@@ -39,20 +41,54 @@ class IngredientDisplay : Menu
 
     public void MenuDisplayButtons()
     {
+        //List needs to be declared outside of loop to store data in variable.
+        List<int> menuIngredientRecorder = new List<int>();
         bool exit = false;
 
         while (!exit)
         {
             Console.WriteLine("\nSelect an ingredient by number (or type 0 to exit):");
-            Console.WriteLine("1: Flour");
-            Console.WriteLine("2: Egg");
-            Console.WriteLine("3: Milk");
-            Console.WriteLine("4: Oil");
-            Console.WriteLine("5: Salt");
-            Console.WriteLine("6: Sugar");
-            Console.WriteLine("7: Vanilla");
-            Console.WriteLine("8: Chocolate");
-            Console.WriteLine("9: Cinnamon");
+            //Variable will store the numbers entered by chef and the if statement will look throuh the list
+            //and not display the counsole assoicated with the number
+
+
+
+            if(!menuIngredientRecorder.Contains(1))
+            {
+                Console.WriteLine("1: Flour");
+            }
+            if (!menuIngredientRecorder.Contains(2))
+            {
+                Console.WriteLine("2: Egg");
+            }
+            if (!menuIngredientRecorder.Contains(3))
+            {
+                Console.WriteLine("3: Milk");
+            }
+            if (!menuIngredientRecorder.Contains(4))
+            {
+                Console.WriteLine("4: Oil");
+            }
+            if (!menuIngredientRecorder.Contains(5))
+            {
+                Console.WriteLine("5: Salt");
+            }
+            if (!menuIngredientRecorder.Contains(6))
+            {
+                Console.WriteLine("6: Sugar");
+            }
+            if (!menuIngredientRecorder.Contains(7))
+            {
+                Console.WriteLine("7: Vanilla");
+            }
+            if (!menuIngredientRecorder.Contains(8))
+            {
+                Console.WriteLine("8: Chocolate");
+            }
+            if (!menuIngredientRecorder.Contains(9))
+            {
+                Console.WriteLine("9: Cinnamon");
+            }
 
 
             int userChoice;
@@ -70,13 +106,32 @@ class IngredientDisplay : Menu
                 Ingredient ingredient = new Ingredient(userChoice);
                 ingredient.IngredientPicker();
 
-
+                //This will add a number to the menuIngredientRecorder list if number is valid
+                int userDeletedChoice = userChoice;
+                menuIngredientRecorder.Add(userDeletedChoice);
 
             }
             else
             {
                 Console.WriteLine("Invalid choice, please try again.");
             }
+
+            
+        }
+
+
+        string completeList = "";
+        //Takes the list of typed numbers and prints them with correlating description.
+        //Console.WriteLine($"{menuIngredientRecorder.Count()}");
+        foreach(int menuIngredientRecord in menuIngredientRecorder)
+        {
+            //Console.WriteLine($"{menuIngredientRecord}, ");
+            completeList = menuIngredientRecord.ToString();
+            if(completeList == "")
+            {
+                Console.WriteLine("Sorry Your Cookie Book is Empty");
+            }
+            completeList = $"{completeList}, {menuIngredientRecord}";
         }
     }
 }
@@ -103,7 +158,7 @@ public class Ingredient : Menu
             7 => "Vanilla",
             8 => "Chocolate",
             9 => "Cinnamon",
-            _ => "Unknown"
+            //_ => "Print Recipe"
         };
 
         IngredientDescription ingridientDescription = new IngredientDescription(0);
@@ -128,7 +183,7 @@ public class IngredientDescription : Ingredient
             "Vanilla" => "Vanilla is a flavoring derived from orchids of the genus Vanilla.",
             "Chocolate" => "Chocolate is a preparation of roasted and ground cacao seeds, often sweetened.",
             "Cinnamon" => "Cinnamon is a spice obtained from the inner bark of several tree species.",
-            _ => "Unknown description"
+            _ => "Printing Recipe"
         };
 
         Console.WriteLine($"Description: {ingredientDescription}");
