@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("cookieRecipe")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fb3644a0911c5b7a7af6764ab96f55b0ad38df48")]
 [assembly: System.Reflection.AssemblyProductAttribute("cookieRecipe")]
 [assembly: System.Reflection.AssemblyTitleAttribute("cookieRecipe")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

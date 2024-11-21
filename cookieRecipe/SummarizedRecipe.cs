@@ -1,44 +1,44 @@
-﻿//public class summarizedrecipe : ingredientdisplay
-//{
-//    public summarizedrecipe(int ingredient) : base(ingredient)
-//    {
-//    }
+﻿public class SummarizedRecipe : IngredientDisplay
+{
+    public SummarizedRecipe(int ingredient) : base(ingredient)
+    {
+    }
 
-//    public void summarizedrecipemaker()
-//    {
-//        if (!menuingredientid.contains(0) || exit)
-//        {
-//            console.writeline("your recipe is complete");
-//        }
+    public void SummarizedRecipeMaker()
+    {
+        if (!menuIngredientId.Contains(0)/* || Exit*/)
+        {
+            Console.WriteLine("your recipe is complete");
+        }
 
-//        string completelist = "";
-//        //takes the list of typed numbers and prints them with correlating description.
-//        // check if there are any items in menuingredientrecorder
-//        if (!menuingredientid.any())
-//        {
-//            console.writeline("sorry, your cookie book is empty");
-//        }
-//        else
-//        {
-//            // loop through each item and append it to completelist
-//            foreach (int menuingredientrecord in menuingredientid)
-//            {
-//                completelist += $"{menuingredientrecord}, ";
-//            }
+        string completeList = "";
+        //takes the list of typed numbers and prints them with correlating description.
+        // check if there are any items in menuIngredientRecorder
+        if (!menuIngredientId.Any())
+        {
+            Console.WriteLine("sorry, your cookie book is empty");
+        }
+        else
+        {
+            // loop through each item and append it to completelist
+            foreach (int menuIngredientRecord in menuIngredientId)
+            {
+                completeList += $"{menuIngredientRecord}, ";
+            }
 
-//            // remove the trailing comma and space
-//            completelist = completelist.trimend(',', ' ');
+            // remove the trailing comma and space
+            completeList = completeList.TrimEnd(',', ' ');
 
-//            // print the final list on a single line
-//            console.writeline(completelist);
-//        }
+            // print the final list on a single line
+            Console.WriteLine(completeList);
+        }
 
-//        list<string> multiplecompletelist = new list<string>();
+        List<string> multiplecompletelist = new List<string>();
 
-//        multiplecompletelist.add(completelist);
+        multiplecompletelist.Add(completeList);
 
-//        console.writeline(multiplecompletelist);
+        Console.WriteLine(multiplecompletelist);
 
-//    }
-//}
-//}
+    }
+}
+

@@ -1,21 +1,21 @@
-﻿
-
-
-
-
-public class Ingredient : Menu
+﻿public class Ingredient : Menu
 {
     public Ingredient(int ingredient) : base(ingredient) { }
 
     public virtual void IngredientPicker()
     {
+        string ingredientName = GetIngredientName();
+        IngredientDescription ingredientDescription = new IngredientDescription(Ingredient);
+        ingredientDescription.IngredientDescriptionAssigner(ingredientName);
+    }
 
-        //string ingredientName;
-        //switch (ingredient)
-        //switch expression below is the same as the switch statement above.
-        string ingredientName = Ingredient switch
+    //string ingredientName;
+    //switch (ingredient)
+    //switch expression below is used in the List above.
+    public string GetIngredientName()
+    {
+        return Ingredient switch
         {
-         //This switch expression is the same a switsh statement. It simplier and precise if you only have one cases.
             1 => "Flour",
             2 => "Eggs",
             3 => "Baking soda",
@@ -25,9 +25,7 @@ public class Ingredient : Menu
             7 => "Vanilla",
             8 => "Chocolate",
             9 => "Brown sugar",
+            _ => "Unknown"
         };
-
-        IngredientDescription ingridientDescription = new IngredientDescription(0);
-        ingridientDescription.IngredientDescriptionAssigner(ingredientName);
     }
 }

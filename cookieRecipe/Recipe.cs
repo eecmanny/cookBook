@@ -1,5 +1,7 @@
 ﻿public class Recipe : IngredientDisplay
 {
+
+
     public Recipe(int ingredient) : base(ingredient)
     {
     }
@@ -26,6 +28,7 @@
         {
             //exit = true;
             Console.WriteLine("Exiting the ingredient selection.");
+
         }
         else if (isValidInput && userChoice >= 1 && userChoice <= 9)
         {

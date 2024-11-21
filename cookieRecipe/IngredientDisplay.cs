@@ -1,42 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-
-////class Program
-////{
-////    static void Main(string[] args)
-////    {
-////        CookBookIntro start = new CookBookIntro();
-////        IngredientDisplay chefChoice = new IngredientDisplay(0);
-
-////        start.IntroductionToChef();
-////        chefChoice.MenuDisplayButtons();
-
-////        Console.ReadKey();
-////    }
-////}
-
-//class CookBookIntro
-//{
-//    public void IntroductionToChef()
-//    {
-//        Console.WriteLine("Hello Chef!!!");
-//        Console.WriteLine("Let's create multiple custom recipes");
-//        Console.WriteLine();
-//        Console.WriteLine("Here is a list of ingredients:");
-//    }
-//}
-
-//public class Menu
-//{
-//    protected int Ingredient { get; private set; }
-
-//    public Menu(int ingredient)
-//    {
-//        Ingredient = ingredient;
-//    }
-//}
-
-public class IngredientDisplay : Menu
+﻿public class IngredientDisplay : Menu
 {
     private List<List<int>> recipes = new List<List<int>>(); // List to store multiple recipes
 
@@ -69,6 +31,8 @@ public class IngredientDisplay : Menu
             {
                 exit = true;
                 Console.WriteLine("Exiting the ingredient selection.");
+                //SummarizedRecipe ingriedentSummary = new SummarizedRecipe(0);
+                //ingriedentSummary.SummarizedRecipeMaker();
                 continue;
             }
 
@@ -115,13 +79,13 @@ public class IngredientDisplay : Menu
             int recipeNumber = 1;
             foreach (var recipe in recipes)
             {
-                //Console.WriteLine($"\nRecipe {recipeNumber}:");
-                //foreach (int ingredientId in recipe)
-                //{
-                //    string ingredientName = new Ingredient(ingredientId).GetIngredientName();
-                //    Console.WriteLine($"- {ingredientName}");
-                //}
-                //recipeNumber++;
+                Console.WriteLine($"\nRecipe {recipeNumber}:");
+                foreach (int ingredientId in recipe)
+                {
+                    string ingredientName = new Ingredient(ingredientId).GetIngredientName();
+                    Console.WriteLine($"- {ingredientName}");
+                }
+                recipeNumber++;
             }
         }
         else
@@ -130,56 +94,3 @@ public class IngredientDisplay : Menu
         }
     }
 }
-
-//public class Ingredient : Menu
-//{
-//    public Ingredient(int ingredient) : base(ingredient) { }
-
-//    public virtual void IngredientPicker()
-//    {
-//        string ingredientName = GetIngredientName();
-//        IngredientDescription ingredientDescription = new IngredientDescription(Ingredient);
-//        ingredientDescription.IngredientDescriptionAssigner(ingredientName);
-//    }
-
-//    public string GetIngredientName()
-//    {
-//        return Ingredient switch
-//        {
-//            1 => "Flour",
-//            2 => "Eggs",
-//            3 => "Baking soda",
-//            4 => "Butter",
-//            5 => "Salt",
-//            6 => "Sugar",
-//            7 => "Vanilla",
-//            8 => "Chocolate",
-//            9 => "Brown sugar",
-//            _ => "Unknown"
-//        };
-//    }
-//}
-
-//public class IngredientDescription : Ingredient
-//{
-//    public IngredientDescription(int ingredient) : base(ingredient) { }
-
-//    public void IngredientDescriptionAssigner(string ingredientName)
-//    {
-//        string ingredientDescription = ingredientName switch
-//        {
-//            "Flour" => "2 1/4 cups - Provides structure for the dough, giving cookies their shape.",
-//            "Eggs" => "2 large - Bind ingredients together and add moisture for a chewy texture.",
-//            "Baking soda" => "1 teaspoon - Helps the cookies rise and become light and fluffy.",
-//            "Butter" => "1 cup (2 sticks), softened - Adds richness and moisture, creating a tender cookie.",
-//            "Salt" => "1/2 teaspoon - Enhances flavor and balances sweetness.",
-//            "Sugar" => "3/4 cup - Sweetens the cookies and contributes to a tender texture.",
-//            "Vanilla" => "1 teaspoon - Adds a warm, sweet flavor.",
-//            "Chocolate" => "2 cups - Provide chocolatey bursts throughout the cookies for texture and flavor.",
-//            "Brown sugar" => "3/4 cup, packed - Adds sweetness and a hint of caramel flavor, while also making cookies chewier.",
-//            _ => "No description available."
-//        };
-
-//        Console.WriteLine($"Description: {ingredientDescription}");
-//    }
-//}
